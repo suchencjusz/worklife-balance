@@ -2,7 +2,8 @@
   "name": "Track Your Life",
   "version": "0.1.0",
   "description": "working and lifing balance",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage", "tabs", "activeTab",
+  "clipboardWrite"],
   "host_permissions": ["<all_urls>"],
   "background": {
       "service_worker": "background.js"
