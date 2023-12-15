@@ -1,10 +1,10 @@
 import os
-
 import uvicorn
-from config import import_routers
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from config import import_routers
 
 def get_app() -> FastAPI:
     app = FastAPI()
