@@ -5,4 +5,5 @@ class ActivityIn(BaseModel):
     url: str
     unix_timestamp_start: int
     unix_timestamp_end: int
+    duration: int
     
