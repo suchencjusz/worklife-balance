@@ -79,7 +79,12 @@ class DBClient:
             else:
                 categorized_activities_with_count[domain] = 1
 
-        return categorized_activities_with_count
+        sea_of_dicts = []
+
+        for key, value in categorized_activities_with_count.items():
+            sea_of_dicts.append({"domain": key, "count": value})
+
+        return sea_of_dicts
         
     def sum_user_activities(self, id_user: str) -> List[ActivityIn]:
 
@@ -99,4 +104,9 @@ class DBClient:
             else:
                 categorized_activities_with_count[domain] = activity["duration"]
 
-        return categorized_activities_with_count
+        sea_of_dicts = []
+
+        for key, value in categorized_activities_with_count.items():
+            sea_of_dicts.append({"domain": key, "duration": value})
+
+        return sea_of_dicts
