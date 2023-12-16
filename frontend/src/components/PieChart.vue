@@ -28,8 +28,8 @@ fetch(API_URL)
 
     const option = {
       tooltip: {
-        trigger: 'item'
-        // valueFormatter: (value: number) => Math.round(value / 1000 / 36) / 100 + 'h'
+        trigger: 'item',
+        valueFormatter: (value: number) => Math.round(value / 1000 / 6) / 10 + 'min'
       },
       itemStyle: {
         borderColor: '#fff',
@@ -78,7 +78,7 @@ fetch(API_URL)
 
 <style scoped>
 .container {
-  flex: 1;
+  flex: 2;
   height: 100%;
   min-height: 40rem;
 }

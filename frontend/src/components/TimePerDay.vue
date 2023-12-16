@@ -18,7 +18,12 @@ onMounted(() => {
   option = {
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      axisLine: {
+        lineStyle: {
+          color: '#000'
+        }
+      }
     },
     yAxis: {
       type: 'value',

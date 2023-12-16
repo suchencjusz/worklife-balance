@@ -64,7 +64,7 @@ onMounted(() => {
 
 <style scoped>
 .container {
-  flex: 1;
+  flex: 2;
   height: 100%;
   min-height: 40rem;
 }
@@ -72,7 +72,6 @@ onMounted(() => {
 .chart-container {
   min-height: 40rem;
   width: 100%;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.49);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

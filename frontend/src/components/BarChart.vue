@@ -49,6 +49,11 @@ fetch(API_URL)
           },
           textStyle: {
             color: '#000'
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#000'
+            }
           }
         }
       ],
@@ -58,6 +63,11 @@ fetch(API_URL)
           textStyle: {
             color: '#000',
             fontSize: 16
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#000'
+            }
           }
         }
       ],
