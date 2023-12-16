@@ -21,3 +21,8 @@ async def get_activities(id_user: str) -> JSONResponse:
 async def get_most_visited_domains(id_user: str) -> JSONResponse:
     activities = DB.categorize_user_activities(id_user)
     return JSONResponse({"activities": activities})
+
+@router.get("/sum_visited_domains/{id_user}")
+async def get_sum_visited_domains(id_user: str) -> JSONResponse:
+    activities = DB.sum_user_activities(id_user)
+    return JSONResponse({"activities": activities})

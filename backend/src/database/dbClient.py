@@ -81,3 +81,22 @@ class DBClient:
 
         return categorized_activities_with_count
         
+    def sum_user_activities(self, id_user: str) -> List[ActivityIn]:
+
+        def extract_domain(url):
+            extracted = tldextract.extract(url)
+            domain = f"{extracted.domain}.{extracted.suffix}"
+            return domain
+
+        activities = self.get_activities(id_user)
+
+        categorized_activities_with_count = {}
+
+        for activity in activities:
+            domain = extract_domain(activity["url"])
+            if domain in categorized_activities_with_count:
+                categorized_activities_with_count[domain] += activity["duration"]
+            else:
+                categorized_activities_with_count[domain] = activity["duration"]
+
+        return categorized_activities_with_count
