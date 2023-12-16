@@ -1,4 +1,5 @@
 <template>
+  <TheNavBar />
   <main>
     <div class="small-widgets">
       <TimeSpentPerCategory />
@@ -10,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import TheNavBar from '@/components/TheNavBar.vue'
 import PieChart from '@/components/PieChart.vue'
 import timePerDay from '@/components/TimePerDay.vue'
 import RawStatistics from '@/components/RawStatistics.vue'
