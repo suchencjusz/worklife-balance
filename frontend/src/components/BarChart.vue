@@ -64,6 +64,11 @@ fetch(API_URL)
             color: '#000',
             fontSize: 16
           },
+          splitLine: {
+            lineStyle: {
+              color: '#bbb'
+            }
+          },
           axisLine: {
             lineStyle: {
               color: '#000'

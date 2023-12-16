@@ -28,6 +28,11 @@ onMounted(() => {
     yAxis: {
       type: 'value',
       name: 'Hours',
+      splitLine: {
+        lineStyle: {
+          color: '#bbb'
+        }
+      },
       nameTextStyle: {
         color: '#000',
         fontSize: 16
@@ -81,7 +86,7 @@ onMounted(() => {
 <style scoped>
 .chart-container {
   height: 500px;
-  /* From https://css.glass */
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.49);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

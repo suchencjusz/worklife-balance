@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Most popular</h2>
+    <h2>Most popular <span>show all</span></h2>
     <div class="pie-chart">
       <div ref="chart" class="chart-container"></div>
     </div>
@@ -17,7 +17,7 @@ const API_URL = 'http://127.0.0.1:8080/api/activities/sum_visited_domains/1'
 fetch(API_URL)
   .then((response) => response.json())
   .then((data) => {
-    const charData = data.activities.slice(0, 7).map((item: any) => {
+    const charData = data.activities.slice(0, 6).map((item: any) => {
       return {
         name: item.name,
         value: item.value
@@ -81,6 +81,16 @@ fetch(API_URL)
   flex: 2;
   height: 100%;
   min-height: 40rem;
+}
+
+h2 span {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .chart-container {
