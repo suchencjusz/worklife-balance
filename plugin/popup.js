@@ -2,7 +2,8 @@
 const main = document.querySelector("#main");
 
 const isSignedIn = () => {
-  const user_id = localStorage.getItem("apiKey");
+  // const user_id = localStorage.getItem("apiKey");
+  const user_id = "1";
   return user_id !== null;
 };
 
