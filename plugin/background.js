@@ -14,14 +14,13 @@ function temp(activeInfo) {
   if (lastActiveTabTimeStamp === null) {
     lastActiveTabTimeStamp = timestamp;
     chrome.tabs.get(activeInfo.tabId).then((tab) => {
+      console.log(tab);
       if (tab.url === undefined || tab.url === null) {
         return;
       }
       lastActiveTaburl = tab.url;
     });
   } else if (lastActiveTabTimeStamp !== timestamp) {
-    console.log((timestamp - lastActiveTabTimeStamp) / 1000, "s");
-
     sendActivity(lastActiveTaburl, lastActiveTabTimeStamp, timestamp, apiKey);
 
     lastActiveTabTimeStamp = timestamp;

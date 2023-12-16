@@ -78,7 +78,7 @@ li p {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   transform: translate(-50%, -50%);
 }
 

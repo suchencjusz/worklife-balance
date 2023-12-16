@@ -19,7 +19,8 @@ onMounted(() => {
 
   option = {
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      valueFormatter: (value: number) => value + 'h'
     },
     legend: {
       top: '5%',
@@ -51,9 +52,9 @@ onMounted(() => {
           show: false
         },
         data: [
-          { value: 1048, name: 'Entertaiment' },
-          { value: 735, name: 'Learning' },
-          { value: 580, name: 'Other' }
+          { value: 0.7, name: 'Entertaiment' },
+          { value: 19.2, name: 'Working' },
+          { value: 0.3, name: 'Other' }
         ]
       }
     ]

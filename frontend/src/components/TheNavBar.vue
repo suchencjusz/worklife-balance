@@ -2,7 +2,7 @@
   <header>
     <nav>
       <div class="logo">
-        <img src="@/assets/logo.png" alt="logo" />
+        <img src="@/assets/logo.webp" alt="logo" />
       </div>
       <div class="links">
         <ul>
@@ -16,6 +16,7 @@
         <div class="avatar">
           <img src="https://avatars.githubusercontent.com/u/10047099?v=4" alt="avatar" />
         </div>
+        <div class="arrow" />
       </div>
     </nav>
   </header>
@@ -29,8 +30,18 @@
   align-items: center;
   gap: 3rem;
 }
+
+.arrow {
+  position: absolute;
+  width: 0;
+  right: 3.75rem;
+  height: 0;
+  border-top: 0.5rem solid #c8c8c8;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+}
 .logo {
-  width: 3rem;
+  height: 3rem;
 }
 
 .logo img {
@@ -43,6 +54,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 ul {

@@ -1,8 +1,18 @@
 <template>
   <div class="container">
-    <h2>Most popular <span>show all</span></h2>
+    <h2>Most popular <span @click="showModal = !showModal">show all</span></h2>
     <div class="pie-chart">
       <div ref="chart" class="chart-container"></div>
+    </div>
+  </div>
+
+  <div class="modal-outside" v-show="showModal" @click="showModal = false">
+    <div class="modal-inside">
+      <ul>
+        <li v-for="(data, idx) in charData.sort((a: any, b: any) => b.value - a.value)" :key="idx">
+          {{ data.name }}: {{ Math.round(data.value / 1000) }}min
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -11,25 +21,27 @@
 import * as echarts from 'echarts'
 import { ref } from 'vue'
 
+const showModal = ref(false)
+
 const chart = ref<HTMLElement | null>(null)
 const API_URL = 'http://127.0.0.1:8080/api/activities/sum_visited_domains/1'
+
+const charData = ref([])
 
 fetch(API_URL)
   .then((response) => response.json())
   .then((data) => {
-    const charData = data.activities.slice(0, 6).map((item: any) => {
+    charData.value = data.activities.map((item: any) => {
       return {
         name: item.name,
         value: item.value
       }
     })
 
-    console.log(charData)
-
     const option = {
       tooltip: {
         trigger: 'item',
-        valueFormatter: (value: number) => Math.round(value / 1000 / 6) / 10 + 'min'
+        valueFormatter: (value: number) => (Math.round(value / 600) / 100).toFixed(1) + 'h'
       },
       itemStyle: {
         borderColor: '#fff',
@@ -67,7 +79,7 @@ fetch(API_URL)
           labelLine: {
             show: false
           },
-          data: charData
+          data: charData.value.slice(0, 6).sort((a: any, b: any) => b.value - a.value)
         }
       ]
     }
@@ -86,6 +98,7 @@ fetch(API_URL)
 h2 span {
   font-size: 1rem;
   margin-top: 5px;
+  cursor: pointer;
 }
 h2 {
   display: flex;
@@ -103,5 +116,33 @@ h2 {
   backdrop-filter: blur(8.7px);
   -webkit-backdrop-filter: blur(8.7px);
   border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.modal-outside {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.modal-inside {
+  position: absolute;
+  width: 60vw;
+  height: 80vh;
+  left: 20vw;
+  top: 10vh;
+  background-color: #fff;
+  z-index: 1000;
+  border: 4px solid #c8c8c8;
+  border-radius: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 </style>
