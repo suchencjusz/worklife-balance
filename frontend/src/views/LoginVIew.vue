@@ -17,7 +17,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const form = ref(null)
 const API_URL = 'http://127.0.0.1:8080/api/auth/token'
 
@@ -43,11 +45,29 @@ function login() {
   }).then((res) => {
     if (res.ok) {
       res.json().then((data) => {
-        console.log(data)
+        localStorage.setItem('token', data.access_token)
+        localStorage.setItem('user_id', data.user_id)
+
+        sendTokenToChromeExtension({
+          extensionId: 'egeojfmnocaggbciaeejlinjplkpidnc',
+          jwt: data.access_token
+        })
+
+        router.push({ name: 'home' })
       })
     } else {
       throw new Error('Something went wrong')
     }
+  })
+}
+
+const sendTokenToChromeExtension = ({ extensionId, jwt }) => {
+  chrome.runtime.sendMessage(extensionId, { jwt }, (response: any) => {
+    if (!response.success) {
+      console.log('error sending message', response)
+      return response
+    }
+    console.log('Sucesss ::: ', response.message)
   })
 }
 </script>

@@ -5,7 +5,11 @@ const API_URL = "http://127.0.0.1:8080/api";
 
 chrome.tabs.onActivated.addListener((activeInfo) => {
   const timestamp = Math.floor(Date.now());
+  const apiKey = localStorage.getItem("apiKey");
 
+  if (apiKey === null) {
+    return;
+  }
   if (lastActiveTabTimeStamp === null) {
     lastActiveTabTimeStamp = timestamp;
     chrome.tabs.get(activeInfo.tabId).then((tab) => {
@@ -23,9 +27,9 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
   }
 });
 
-function sendActivity(url, unixTimestampStart, unixTimestampEnd) {
+function sendActivity(url, unixTimestampStart, unixTimestampEnd, apiKey) {
   const data = {
-    id_user: "1",
+    id_user: apiKey,
     url: url,
     duration: unixTimestampEnd - unixTimestampStart,
     unix_timestamp_start: unixTimestampStart,
