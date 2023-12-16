@@ -35,7 +35,7 @@ class DBClient:
 
     def migrate(self) -> None:
         self.db.worklife.worklife.create_index(
-            [("_id", 1), ("url", 1)], unique=False
+            [("id_user", 1), ("url", 1)], unique=False
         )
         self.db.worklife.users.create_index([("username", 1)], unique=True)
 
@@ -56,7 +56,7 @@ class DBClient:
         return response
 
     def get_activities(self, id_user: str) -> List[ActivityIn]:
-        data = self.db.worklife.worklife.find({"_id": id_user})
+        data = self.db.worklife.worklife.find({"id_user": id_user})
 
         response = json.loads(json_util.dumps(data))
         return response
