@@ -12,56 +12,58 @@ import * as echarts from 'echarts'
 import { ref, onMounted } from 'vue'
 
 const chart = ref<HTMLElement | null>(null)
+const API_URL = 'http://127.0.0.1:8080/api/activities/sum_visited_domains/1'
 
-onMounted(() => {
-  const myChart = echarts.init(chart.value)
-  var option
+fetch(API_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    const chartData = Object.entries(data).map(([domain, count]) => ({
+      name: domain,
+      value: count
+    }))
 
-  option = {
-    tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      top: '5%',
-      left: 'center'
-    },
-    series: [
-      {
-        name: 'Access From',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 2
-        },
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
+    console.log(chartData)
+
+    const option = {
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        top: '5%',
+        left: 'center'
+      },
+      series: [
+        {
+          name: 'Access From',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
           label: {
-            show: true,
-            fontSize: 40,
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' }
-        ]
-      }
-    ]
-  }
-  option && myChart.setOption(option)
-})
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 40,
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: chartData
+        }
+      ]
+    }
+    var myChart = echarts.init(chart.value!)
+    option && myChart.setOption(option)
+  })
 </script>
 
 <style scoped>
