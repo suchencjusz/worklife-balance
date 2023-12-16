@@ -6,14 +6,14 @@ import { RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style scoped></style>
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;500&display=swap');
+
 body {
+  font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #d4ebf2;
+  background-color: #abd8e9;
 }
 
 #app {
@@ -21,5 +21,8 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+h2 {
+  font-weight: normal;
 }
 </style>

@@ -30,7 +30,7 @@
   gap: 3rem;
 }
 .logo {
-  width: 4rem;
+  width: 3rem;
 }
 
 .logo img {
@@ -61,7 +61,7 @@ header {
 }
 
 li {
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: 3px solid #c8c8c8;
   padding: 0.5rem;
   border-radius: 0.5rem;

@@ -4,6 +4,35 @@
   border-radius: 5px;
 }
 
+.button{
+  width: fit-content;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #66afe9;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: #00254d;
+}
+
+.button a {
+  text-decoration: none;
+  color: white;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 #main{
   display: flex;
   flex-direction: column;

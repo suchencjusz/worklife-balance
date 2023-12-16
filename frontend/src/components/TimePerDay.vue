@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Time per day</h1>
+    <h2>Time per day</h2>
     <div ref="chart" class="chart-container"></div>
   </div>
 </template>
@@ -21,30 +21,48 @@ onMounted(() => {
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
+      name: 'Hours',
+      nameTextStyle: {
+        color: '#000',
+        fontSize: 16
+      },
+      axisLabel: {
+        formatter: '{value}h'
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#000'
+        }
+      }
     },
     legend: {
+      textStyle: {
+        color: '#000',
+        fontSize: 16
+      },
       data: ['Learning', 'Entertaiment', 'Other']
     },
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      valueFormatter: (value: string) => value + 'h'
     },
     series: [
       {
         name: 'Learning',
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [1, 2, 1.5, 1.3, 5.3, 1.1, 1.8],
         type: 'line',
         smooth: true
       },
       {
         name: 'Entertaiment',
-        data: [153, 1232, 11, 234, 190, 130, 1320],
+        data: [3.4, 5.3, 1.1, 1.4, 0, 1.1, 4.1],
         type: 'line',
         smooth: true
       },
       {
         name: 'Other',
-        data: [123, 123, 123, 123, 123, 123, 123],
+        data: [0.3, 0.2, 0.1, 0.5, 1.1, 1.5, 1.2],
         type: 'line',
         smooth: true
       }
@@ -58,8 +76,12 @@ onMounted(() => {
 <style scoped>
 .chart-container {
   height: 500px;
-  background-color: #fff;
-  border-radius: 1rem;
-  border: 4px solid #c8c8c8;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.49);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 </style>

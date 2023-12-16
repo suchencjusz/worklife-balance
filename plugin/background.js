@@ -3,9 +3,10 @@ let lastActiveTabTimeStamp = null;
 
 const API_URL = "http://127.0.0.1:8080/api";
 
-chrome.tabs.onActivated.addListener((activeInfo) => {
+function temp(activeInfo) {
   const timestamp = Math.floor(Date.now());
-  const apiKey = localStorage.getItem("apiKey");
+  // const apiKey = localStorage.getItem("apiKey");
+  const apiKey = "1";
 
   if (apiKey === null) {
     return;
@@ -13,19 +14,25 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
   if (lastActiveTabTimeStamp === null) {
     lastActiveTabTimeStamp = timestamp;
     chrome.tabs.get(activeInfo.tabId).then((tab) => {
+      if (tab.url === undefined || tab.url === null) {
+        return;
+      }
       lastActiveTaburl = tab.url;
     });
   } else if (lastActiveTabTimeStamp !== timestamp) {
     console.log((timestamp - lastActiveTabTimeStamp) / 1000, "s");
 
-    sendActivity(lastActiveTaburl, lastActiveTabTimeStamp, timestamp);
+    sendActivity(lastActiveTaburl, lastActiveTabTimeStamp, timestamp, apiKey);
 
     lastActiveTabTimeStamp = timestamp;
     chrome.tabs.get(activeInfo.tabId).then((tab) => {
       lastActiveTaburl = tab.url;
     });
   }
-});
+}
+
+chrome.tabs.onActivated.addListener((activeInfo) => temp(activeInfo));
+chrome.tabs.onUpdated.addListener((tab) => temp(tab));
 
 function sendActivity(url, unixTimestampStart, unixTimestampEnd, apiKey) {
   const data = {

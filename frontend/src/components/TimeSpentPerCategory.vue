@@ -72,8 +72,12 @@ onMounted(() => {
 .chart-container {
   min-height: 40rem;
   width: 100%;
-  background-color: #fff;
-  border-radius: 1rem;
-  border: 4px solid #c8c8c8;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.49);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.7px);
+  -webkit-backdrop-filter: blur(8.7px);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 </style>

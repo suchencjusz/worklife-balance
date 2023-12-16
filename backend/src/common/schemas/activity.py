@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
+
 class ActivityIn(BaseModel):
-    _id: str
+    _id: str | None
     id_user: str
     url: str
     unix_timestamp_start: int
