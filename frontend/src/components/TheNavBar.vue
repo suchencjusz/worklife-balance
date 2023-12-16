@@ -3,6 +3,7 @@
     <nav>
       <div class="logo">
         <img src="@/assets/logo.webp" alt="logo" />
+        track your life
       </div>
       <div class="links">
         <ul>
@@ -41,12 +42,16 @@
   border-right: 0.5rem solid transparent;
 }
 .logo {
-  height: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3px;
+  color: black;
 }
 
 .logo img {
-  width: 100%;
-  height: 100%;
+  width: 3rem;
+  height: 3rem;
   object-fit: cover;
 }
 
