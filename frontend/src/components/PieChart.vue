@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const chart = ref<HTMLElement | null>(null)
 const API_URL = 'http://127.0.0.1:8080/api/activities/sum_visited_domains/1'
@@ -17,12 +17,14 @@ const API_URL = 'http://127.0.0.1:8080/api/activities/sum_visited_domains/1'
 fetch(API_URL)
   .then((response) => response.json())
   .then((data) => {
-    const chartData = Object.entries(data).map(([domain, count]) => ({
-      name: domain,
-      value: count
-    }))
+    const charData = data.activities.map((activity: any) => {
+      return {
+        name: activity.name,
+        value: Math.round(activity.value / 1000)
+      }
+    })
 
-    console.log(chartData)
+    console.log(charData)
 
     const option = {
       tooltip: {
@@ -57,7 +59,7 @@ fetch(API_URL)
           labelLine: {
             show: false
           },
-          data: chartData
+          data: charData
         }
       ]
     }

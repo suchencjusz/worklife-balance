@@ -7,10 +7,12 @@
       <PieChart />
     </div>
     <timePerDay />
+    <BarChart />
   </main>
 </template>
 
 <script setup lang="ts">
+import BarChart from '@/components/BarChart.vue'
 import TheNavBar from '@/components/TheNavBar.vue'
 import PieChart from '@/components/PieChart.vue'
 import timePerDay from '@/components/TimePerDay.vue'

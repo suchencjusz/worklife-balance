@@ -1,21 +1,17 @@
-import os
-import pydantic
-import tldextract
 import json
-
+import os
 from datetime import datetime
 from typing import List, Optional
 
-from bson import ObjectId
 import bson.json_util as json_util
-
-from dotenv import load_dotenv
-from pymongo import MongoClient, UpdateOne
-
-from passlib.context import CryptContext
-
+import pydantic
+import tldextract
+from bson import ObjectId
 from common.schemas.activity import ActivityIn
 from common.schemas.user import User
+from dotenv import load_dotenv
+from passlib.context import CryptContext
+from pymongo import MongoClient, UpdateOne
 
 
 class DBClient:
@@ -60,9 +56,8 @@ class DBClient:
 
         response = json.loads(json_util.dumps(data))
         return response
-    
-    def categorize_user_activities(self, id_user: str) -> List[ActivityIn]:
 
+    def categorize_user_activities(self, id_user: str) -> List[ActivityIn]:
         def extract_domain(url):
             extracted = tldextract.extract(url)
             domain = f"{extracted.domain}.{extracted.suffix}"
@@ -82,12 +77,11 @@ class DBClient:
         sea_of_dicts = []
 
         for key, value in categorized_activities_with_count.items():
-            sea_of_dicts.append({"domain": key, "count": value})
+            sea_of_dicts.append({"name": key, "value": value})
 
         return sea_of_dicts
-        
-    def sum_user_activities(self, id_user: str) -> List[ActivityIn]:
 
+    def sum_user_activities(self, id_user: str) -> List[ActivityIn]:
         def extract_domain(url):
             extracted = tldextract.extract(url)
             domain = f"{extracted.domain}.{extracted.suffix}"
@@ -107,6 +101,6 @@ class DBClient:
         sea_of_dicts = []
 
         for key, value in categorized_activities_with_count.items():
-            sea_of_dicts.append({"domain": key, "duration": value})
+            sea_of_dicts.append({"name": key, "value": value})
 
         return sea_of_dicts
